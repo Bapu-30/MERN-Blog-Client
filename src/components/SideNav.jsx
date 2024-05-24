@@ -60,7 +60,7 @@ function SideNav() {
                                 Blogs
                             </NavLink>
 
-                            <NavLink to="/dashboard/notification" onClick={ (e) => setPageState(e.target.innerText) } className="sidebar-link">
+                            <NavLink to="/dashboard/notifications" onClick={ (e) => setPageState(e.target.innerText) } className="sidebar-link">
                                 <div className="relative">
                                     <i className="fi fi-rr-bell"></i>
                                     { new_notifiction_available ? <span className='bg-red w-2 h-2 rounded-full absolute top-0 right-0 z-10'></span> : "" }
@@ -75,6 +75,7 @@ function SideNav() {
 
                             <h1 className="text-xl text-dark-grey mb-3 mt-20 font-semibold">Settings</h1>
                             <hr className="border-grey -ml-6  mr-6" />
+
                             <NavLink to="/settings/edit-profile" onClick={ (e) => setPageState(e.target.innerText) } className="sidebar-link">
                                 <i className="fi fi-rr-user"></i>
                                 Edit Profile

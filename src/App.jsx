@@ -12,6 +12,7 @@ import BlogPage from "./pages/BlogPage";
 import SideNav from "./components/SideNav";
 import ChangePassword from "./pages/ChangePassword";
 import EditProfile from "./pages/EditProfile";
+import Notifications from "./pages/Notifications";
 
 export const UserContext = createContext({})
 
@@ -23,7 +24,7 @@ const App = () => {
         let userInSession = lookInSession("user")
         userInSession ? setUserAuth(JSON.parse(userInSession)) : setUserAuth({ accessToken: null })
     }, [])
-    
+
     return (
         <UserContext.Provider value={ { userAuth, setUserAuth } }>
             <Routes>
@@ -31,13 +32,14 @@ const App = () => {
                 <Route path="/editor/:blog_id" element={ <Editor /> } />
                 <Route path="/" element={ <Navbar /> }>
                     <Route index element={ <Homepage /> } />
+
+                    <Route path="dashboard" element={ <SideNav /> }>
+                        <Route path="notifications" element={ <Notifications /> } />
+                    </Route>
+
                     <Route path="settings" element={ <SideNav /> }>
-                        <Route path="edit-profile" element=
-                            { <EditProfile /> } />
-                        <Route path="change-password" element=
-                            { <ChangePassword /> } />
-
-
+                        <Route path="edit-profile" element={ <EditProfile /> } />
+                        <Route path="change-password" element={ <ChangePassword /> } />
                     </Route>
                     <Route path="signin" element={ <UserAuthForm type={ "sign-in" } /> } />
                     <Route path="signup" element={ <UserAuthForm type={ "sign-up" } /> } />

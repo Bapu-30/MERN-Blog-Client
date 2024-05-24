@@ -78,7 +78,7 @@ function Navbar() {
           {
             accessToken ?
               <>
-                <Link to="/dashboard/notification">
+                <Link to="/dashboard/notifications">
                   <button className='w-12 h-12 rounded-full bg-grey relative hover:bg-black/20'>
                     <i className="fi fi-rr-bell text-xl block mt-1"></i>
                     { new_notifiction_available ? <span className='bg-red w-3 h-3 rounded-full absolute top-2 right-3 z-10'></span> : "" }
