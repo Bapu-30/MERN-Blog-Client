@@ -2,6 +2,11 @@ import { useContext, useEffect, useState } from "react"
 import axios from 'axios'
 import { UserContext } from "../App";
 import { filterPaginationData } from "../common/FilterPagination";
+import Loader from "../components/Loader";
+import AnimationWrap from "../common/AnimationWrap";
+import NoData from "../components/NoData";
+import NotifiCationCard from "../components/NotifiCationCard";
+import LoadMoreDatabtn from "../components/LoadMoreDatabtn";
 
 function Notifications() {
 
@@ -26,7 +31,7 @@ function Notifications() {
                     data, page,
                     countRoute: "/all-notifications-count",
                     data_to_send: { filter },
-                    user : accessToken
+                    user: accessToken
                 })
 
                 setNotifications(formatedData)
@@ -37,8 +42,8 @@ function Notifications() {
 
     useEffect(() => {
 
-        if(accessToken){
-            fetchNotifications({page : 1})
+        if (accessToken) {
+            fetchNotifications({ page: 1 })
         }
 
     }, [accessToken, filter])
@@ -66,6 +71,23 @@ function Notifications() {
 
                 }
             </div>
+
+            {
+                notifications == null ? <Loader /> :
+                    <>
+                        {
+                            notifications.results.length ?
+                                notifications.results.map((notification, i) => {
+                                    return <AnimationWrap key={ i } transition={ { delay: i * 0.08 } }>
+                                        <NotifiCationCard data={ notification } index={ i } notificationState={ { notifications, setNotifications } } />
+                                    </AnimationWrap>
+                                })
+                                : <NoData message={ "You are all caught up." } />
+
+                        }
+                        <LoadMoreDatabtn state={ notifications } fetchDataFun={ fetchNotifications } additionalParams={ { deletedDocCount: notifications.deletedDocCount } } />
+                    </>
+            }
         </div >
     )
 }
