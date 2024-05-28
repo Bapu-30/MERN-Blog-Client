@@ -42,10 +42,10 @@ function NotifiCationCard({ data, index, notificationState }) {
 
             {
                 type != 'like' ?
-                    <p className="ml-[4.8rem] font-gelasio px-2 py-2 text-xl my-5 bg-dark-grey/30 rounded-md"> { comment.comment }</p> : ""
+                    <p className="ml-[4.8rem] font-gelasio px-2 py-2 text-xl my-5 border-l-2 border-black rounded-r-md  bg-dark-grey/30 "> { comment.comment }</p> : ""
             }
 
-            <div className="ml-14 pl-5 text-dark-grey flex gap-8">
+            <div className="ml-14 pl-5  text-dark-grey flex gap-8">
 
                 <p>{ getDay(createdAt) }</p>
 
