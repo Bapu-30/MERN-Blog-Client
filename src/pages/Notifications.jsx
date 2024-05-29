@@ -5,7 +5,7 @@ import { filterPaginationData } from "../common/FilterPagination";
 import Loader from "../components/Loader";
 import AnimationWrap from "../common/AnimationWrap";
 import NoData from "../components/NoData";
-import NotifiCationCard from "../components/NotifiCationCard";
+import NotificationCard from "../components/NotifiCationCard";
 import LoadMoreDatabtn from "../components/LoadMoreDatabtn";
 
 function Notifications() {
@@ -79,7 +79,7 @@ function Notifications() {
                             notifications.results.length ?
                                 notifications.results.map((notification, i) => {
                                     return <AnimationWrap key={ i } transition={ { delay: i * 0.08 } }>
-                                        <NotifiCationCard data={ notification } index={ i } notificationState={ { notifications, setNotifications } } />
+                                        <NotificationCard data={ notification } index={ i } notificationState={ { notifications, setNotifications } } />
                                     </AnimationWrap>
                                 })
                                 : <NoData message={ "You are all caught up." } />

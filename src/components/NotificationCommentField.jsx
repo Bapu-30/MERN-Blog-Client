@@ -9,7 +9,7 @@ function NotificationCommentField({ _id, blog_author, index = undefined, replyin
 
     let { _id: user_id } = blog_author;
     let { userAuth: { accessToken } } = useContext(UserContext)
-    let { notifications, notifications: { results }, setNotification } = notificationData
+    let { notifications, notifications: { results }, setNotifications } = notificationData
 
     const handleComment = () => {
 
@@ -23,7 +23,12 @@ function NotificationCommentField({ _id, blog_author, index = undefined, replyin
             }
         })
             .then(({ data }) => {
-                console.log(data);
+               setReplying(false);
+               
+               results[index].reply = {comment, _id : data._id}
+
+               setNotifications({...notifications, results})
+               
 
             })
             .catch(err => {
