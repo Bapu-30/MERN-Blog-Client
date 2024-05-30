@@ -13,7 +13,7 @@ function NotificationCard({ data, index, notificationState }) {
 
     let { userAuth: { userName: author_userName, profile_img: author_profile_img, accessToken } } = useContext(UserContext);
 
-    let { notifications: { results } } = notificationState;
+    let { notifications, notifications: { results, totalDocs }, setNotifications } = notificationState;
 
     const handleReplyClick = () => {
         setReplying(pre => !pre)
@@ -31,9 +31,15 @@ function NotificationCard({ data, index, notificationState }) {
             .then(() => {
                 if (type == 'comment') {
                     results.splice(index, 1)
-                }else{
+                } else {
                     delete results[index].reply;
                 }
+
+                target.removeAttribute("disabled");
+                setNotifications({ ...notifications, results, totalDocs: totalDocs - 1, deletedDocCount: notifications.deletedDocCount + 1 })
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
 
