@@ -9,7 +9,7 @@ function NotificationCard({ data, index, notificationState }) {
 
     let [isReplying, setReplying] = useState(false)
 
-    let { type, reply, comment, replied_on_comment, createdAt, user, user: { personal_info: { fullName, profile_img, userName } }, blog: { _id, blog_id, title }, _id: notification_id } = data;
+    let { type, seen, reply, comment, replied_on_comment, createdAt, user, user: { personal_info: { fullName, profile_img, userName } }, blog: { _id, blog_id, title }, _id: notification_id } = data;
 
     let { userAuth: { userName: author_userName, profile_img: author_profile_img, accessToken } } = useContext(UserContext);
 
@@ -18,6 +18,8 @@ function NotificationCard({ data, index, notificationState }) {
     const handleReplyClick = () => {
         setReplying(pre => !pre)
     }
+
+    // console.log(data);
 
     const handleDelete = (comment_id, type, target) => {
 
@@ -44,7 +46,7 @@ function NotificationCard({ data, index, notificationState }) {
     }
 
     return (
-        <div className="p-6 border-b border-grey border-l-black ">
+        <div className={ "p-6 border-b border-grey border-l-black " + (!seen ? "border-l-2" : "") }>
             <div className="flex gap-5 mb-3">
                 <img src={ profile_img } className="w-14 h-14 flex-none rounded-full" />
                 <div className="w-full">
