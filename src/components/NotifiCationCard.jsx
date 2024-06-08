@@ -89,7 +89,7 @@ function NotificationCard({ data, index, notificationState }) {
                                     <button className="underline hover:text-black" onClick={ handleReplyClick }>Reply</button>
                                     : ""
                             }
-                            <button className="underline hover:text-black" onClick={ (e) => handleDelete(comment._id, "comment", e.target) }>Delete</button>
+                            <button className="underline hover:text-black" onClick={ (e) => handleDelete(reply._id, "comment", e.target) }>Delete</button>
                         </> : ""
                 }
 
